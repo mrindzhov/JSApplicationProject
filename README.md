@@ -1,0 +1,2 @@
+# JSApplicationProject
+Rebuild
