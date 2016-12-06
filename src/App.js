@@ -29,23 +29,32 @@ class App extends Component {
         let navbar = {};
         if (!this.state.loggedIn) {
             navbar = (
-                    <Navbar>
-                        <Link to="/" className="btn btn-default" activeClassName="btn btn-default active" onlyActiveOnIndex={true}>Home</Link>
-                        <Link to="/about" className="btn btn-default" activeClassName="btn btn-default active">About</Link>
-                        <Link to="/login" className="btn btn-default" activeClassName="btn btn-default active">Login</Link>
-                        <Link to="/register" className="btn btn-default" activeClassName="btn btn-default active">Register</Link>
-                    </Navbar>
-                );
+                <Navbar>
+                    <navbar>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><Link to="/" onlyActiveOnIndex={true}>Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Register</Link></li>
+                    </ul>
+                    </navbar>
+                </Navbar>
+            );
         } else {
             navbar = (
                 <Navbar>
-                    <Link to="/" className="btn btn-default" activeClassName="btn btn-default active" onlyActiveOnIndex={true}>Home</Link>
-                    <Link to="/posts" className="btn btn-default" activeClassName="btn btn-default active">Posts</Link>
-                    <Link to="/about" className="btn btn-default" activeClassName="btn btn-default active">About</Link>
-                    <Link to="/logout" className="btn btn-default" activeClassName="btn btn-default active">Logout</Link>
+                    <navbar>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><Link to="/" onlyActiveOnIndex={true}>Home</Link></li>
+                        <li><Link to="/posts">Posts</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/logout">Logout</Link></li>
+                    </ul>
+                    </navbar>
                 </Navbar>
             );
         }
+
 
         return (
             <div className="container">

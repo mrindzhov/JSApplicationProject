@@ -1,7 +1,14 @@
 .details-box p {
     margin: 1.5em;
 }
+p{
+    word-wrap: break-word;
 
+}
+.titlebar{
+    word-wrap: break-word;
+
+}
 .member {
     font-size: 1.5em;
     margin: 0.25em;
@@ -21,7 +28,7 @@
     display: block;
     padding: 0.25em;
     padding-left: 1.5em;
-    background-color: antiquewhite;
+    background-color: lightskyblue;
     font-weight: 600;
 }
 

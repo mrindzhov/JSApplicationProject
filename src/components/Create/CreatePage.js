@@ -33,7 +33,7 @@ export default class CreatePage extends Component {
     onSubmitResponse(response) {
         if (response === true) {
             // Navigate away from login page
-            this.context.router.push('/');
+            this.context.router.push('/posts');
         } else {
             // Something went wrong, let the user try again
             this.setState({submitDisabled: true});
@@ -43,7 +43,7 @@ export default class CreatePage extends Component {
     render() {
         return (
             <div>
-                <h1>Create Page</h1>
+                <h1>Create Post</h1>
                 <CreateForm
                     title={this.state.title}
                     content={this.state.content}

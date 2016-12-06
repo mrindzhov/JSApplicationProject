@@ -30,8 +30,11 @@ function edit(teamId, name, description, callback) {
 function create(title, content, callback) {
     let today = new Date();
     let dd = today.getDate();
-    let mm = today.getMonth()+1; //January is 0!
+    let mm = today.getMonth(); //January is 0!
     let yyyy = today.getFullYear();
+    let monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
     if(dd<10) {
         dd='0'+dd
@@ -41,7 +44,7 @@ function create(title, content, callback) {
         mm='0'+mm
     }
 
-    today = dd+'/'+mm+'/'+yyyy;
+    today = dd+' '+monthNames[mm]+' '+yyyy;
     let teamData = {
         title: title,
         content: content,

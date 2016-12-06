@@ -7,10 +7,12 @@ import './Details.css';
 export default class Details extends Component {
     constructor(props) {
         super(props);
-        this.state ={
-            name: '',
-            description: '',
-            members: [],
+        this.state = {
+            title: '',
+            content: '',
+            comments: [],
+            likes:0,
+            author:'',
             canEdit: false,
             ownTeam: sessionStorage.getItem('teamId') === this.props.params.teamId
         };
@@ -47,9 +49,15 @@ export default class Details extends Component {
 
     onLoadSuccess(response) {
         let newState = {
-            name: response.name,
-            description: response.comment
+            id:response._id,
+            title: response.title,
+            content: response.content,
+            author: response.author,
+            date: response.date,
+            comments: response.comments,
+            likes: response.likes
         };
+
         if (response._acl.creator === sessionStorage.getItem('userId')) {
             newState.canEdit = true;
         }
@@ -58,33 +66,35 @@ export default class Details extends Component {
 
     onUsersSuccess(response) {
         this.setState({
-            members: response
+            comments: response
         });
     }
 
     render() {
-        let title = 'Team details';
+        /*let title = 'Post details';
         if (this.state.name !== '') {
             title = this.state.name + ' details';
-        }
-
-        let members = <p>No member info</p>;
+        }*/
+        /*let members = <p>No member info</p>;
         if (this.state.members.length > 0) {
             members = (
-            <div>
-                {this.state.members.map((e, i) => <span key={i} className="member">{e.username}</span>)}
-            </div>
+                <div>
+                    {this.state.members.map((e, i) => <span key={i} className="member">{e.username}</span>)}
+                </div>
             );
-        }
-
+        }*/
         return (
             <div className="details-box">
-                <span className="titlebar">{title}</span>
-                <span className="spanner">Team members</span>
-                {members}
-                <span className="spanner">Description</span>
-                <p>{this.state.description || 'No description'}</p>
-                <span className="spanner">Team management</span>
+                <span className="id" hidden>{this.state.id}</span>
+                <span className="titlebar">{this.state.title}</span>
+                <span className="spanner">Author</span>
+                <p>{this.state.author || 'No author'}</p>
+                <span className="spanner">Content</span>
+                <p>{this.state.content || 'No content'}</p>
+                <span className="spanner">Likes: {this.state.likes} Comments: {this.props.comments==='empty'||this.props.comments===undefined?0:this.props.comments.length}</span>
+
+                <p>{this.props.comments}</p>
+
                 <TeamControls
                     teamId={this.props.params.teamId}
                     onJoin={this.onJoin}
