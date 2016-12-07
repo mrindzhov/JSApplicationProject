@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import EditForm from './EditForm';
-import {loadPostDetails, edit} from '../../models/post';
+import DeleteForm from '../Delete/DeleteForm';
+import {loadPostDetails, deletePost} from '../../models/post';
 
-export default class EditPage extends Component {
+export default class DeletePage extends Component {
     constructor(props) {
         super(props);
         this.state = {title: '', content: '',author:'',date:'',likes:'',comments:'', submitDisabled: true};
@@ -30,7 +30,7 @@ export default class EditPage extends Component {
             date: response.date,
             likes: response.likes,
             comments: response.comments,
-            submitDisabled: false
+            submitDisabled: true
         });
     }
 
@@ -44,9 +44,8 @@ export default class EditPage extends Component {
     onSubmitHandler(event) {
         event.preventDefault();
         this.setState({submitDisabled: true});
-        edit(this.props.params.postId, this.state.title, this.state.content, this.state.author, this.state.date, this.state.likes, this.state.comments, this.onSubmitResponse);
+        deletePost(this.props.params.postId,this.onSubmitResponse);
     }
-
     onSubmitResponse(response) {
         if (response === true) {
             // Navigate away from login page
@@ -59,14 +58,10 @@ export default class EditPage extends Component {
     render() {
         return (
             <div>
-                <h1>Edit Post</h1>
-                <EditForm
+                <h1>Delete Post</h1>
+                <DeleteForm
                     title={this.state.title}
                     content={this.state.content}
-                    date={this.state.date}
-                    author={this.state.author}
-                    likes={this.state.likes}
-                    comments={this.state.comments}
                     submitDisabled={this.state.submitDisabled}
                     onChangeHandler={this.onChangeHandler}
                     onSubmitHandler={this.onSubmitHandler}
@@ -76,6 +71,6 @@ export default class EditPage extends Component {
     }
 }
 
-EditPage.contextTypes = {
+DeletePage.contextTypes = {
     router: React.PropTypes.object
 };

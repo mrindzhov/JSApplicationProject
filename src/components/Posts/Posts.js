@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import Team from './Team';
-import {loadTeams} from '../../models/team';
+import Post from './Post';
+import {loadPosts} from '../../models/post';
 import {Link} from 'react-router';
-//import observer from '../../models/observer';
-
 export default class PostsPage extends Component {
     constructor(props) {
         super(props);
@@ -24,22 +22,21 @@ export default class PostsPage extends Component {
 
     componentDidMount() {
         // Request list of posts from the server
-        loadTeams(this.onLoadSuccess);
+        loadPosts(this.onLoadSuccess);
     }
 
     render() {
         let createLink = null;
         if (!sessionStorage.getItem('postId')) {
-            createLink = <Link to="/create" className="btn btn-default">Create post</Link>
+            createLink = <Link to="/create" className="btn btn-default btn-block">Create post</Link>
         }
 
         return (
             <div>
-                <h1>Posts Page</h1>
                 {createLink}
                 <div>
                     {this.state.posts.map((e, i) => {
-                        return <Team key={i} author={e.author} title={e.title} id={e._id} content={e.content} date={e.date} likes={e.likes} comments={e.comments}/>
+                        return <Post key={i} author={e.author} title={e.title} id={e._id} content={e.content} date={e.date} likes={e.likes} comments={e.comments}/>
                     })}
                 </div>
             </div>

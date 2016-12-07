@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {loadTeamDetails, loadUsersDetails} from '../../models/team';
-import {joinTeam, leaveTeam} from '../../models/user';
-import TeamControls from './TeamControls';
+import {loadPostDetails,loadUsersDetails} from '../../models/post';
+import PostControls from './PostControls';
 import './Details.css';
 
 export default class Details extends Component {
@@ -14,7 +13,7 @@ export default class Details extends Component {
             likes:0,
             author:'',
             canEdit: false,
-            ownTeam: sessionStorage.getItem('teamId') === this.props.params.teamId
+            ownTeam: sessionStorage.getItem('postId') === this.props.params.postId
         };
 
         this.bindEventHandlers();
@@ -23,19 +22,7 @@ export default class Details extends Component {
     bindEventHandlers() {
         this.onLoadSuccess = this.onLoadSuccess.bind(this);
         this.onUsersSuccess = this.onUsersSuccess.bind(this);
-        this.onJoin = this.onJoin.bind(this);
-        this.onLeave = this.onLeave.bind(this);
         this.statusChange = this.statusChange.bind(this);
-    }
-
-    onJoin(event) {
-        event.preventDefault();
-        joinTeam(this.props.params.teamId, this.statusChange);
-    }
-
-    onLeave(event) {
-        event.preventDefault();
-        leaveTeam(this.statusChange);
     }
 
     statusChange(response) {
@@ -43,8 +30,8 @@ export default class Details extends Component {
     }
 
     componentDidMount() {
-        loadTeamDetails(this.props.params.teamId, this.onLoadSuccess);
-        loadUsersDetails(this.props.params.teamId, this.onUsersSuccess);
+        loadPostDetails(this.props.params.postId, this.onLoadSuccess);
+        loadUsersDetails(this.props.params.postId, this.onUsersSuccess);
     }
 
     onLoadSuccess(response) {
@@ -75,14 +62,6 @@ export default class Details extends Component {
         if (this.state.name !== '') {
             title = this.state.name + ' details';
         }*/
-        /*let members = <p>No member info</p>;
-        if (this.state.members.length > 0) {
-            members = (
-                <div>
-                    {this.state.members.map((e, i) => <span key={i} className="member">{e.username}</span>)}
-                </div>
-            );
-        }*/
         return (
             <div className="details-box">
                 <span className="id" hidden>{this.state.id}</span>
@@ -95,15 +74,13 @@ export default class Details extends Component {
 
                 <p>{this.props.comments}</p>
 
-                <TeamControls
-                    teamId={this.props.params.teamId}
-                    onJoin={this.onJoin}
-                    onLeave={this.onLeave}
+                <PostControls
+                    postId={this.props.params.postId}
                     canEdit={this.state.canEdit}
-                    ownTeam={this.state.ownTeam}
+                    author={this.state.author}
                 />
             </div>
-        )
+        );
     }
 }
 

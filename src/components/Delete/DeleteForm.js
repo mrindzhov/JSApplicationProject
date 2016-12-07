@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class EditForm extends Component {
+export default class DeleteForm extends Component {
     render() {
         return (
             <form onSubmit={this.props.onSubmitHandler}>
@@ -26,7 +26,7 @@ export default class EditForm extends Component {
                     />
                 </div>
 
-                <input className="btn btn-default" type="submit" value="Submit" disabled={this.props.submitDisabled}/>
+                <input className="btn btn-default" type="submit" value="Delete"/>
             </form>
         );
     }

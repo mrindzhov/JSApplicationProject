@@ -9,7 +9,7 @@ function saveSession(userInfo) {
     sessionStorage.setItem('userId', userId);
     let username = userInfo.username;
     sessionStorage.setItem('username', username);
-    // sessionStorage.setItem('teamId', userInfo.teamId);
+    sessionStorage.setItem('postId', userInfo.postId);
     observer.onSessionUpdate();
 }
 
@@ -59,10 +59,10 @@ function logout(callback) {
     }
 }
 
-function joinTeam(teamId, callback) {
+function joinTeam(postId, callback) {
     let userData = {
         username: sessionStorage.getItem('username'),
-        teamId: teamId
+        postId: postId
     };
     requester.update('user', sessionStorage.getItem('userId'), userData, 'kinvey')
         .then((response) => {
@@ -75,7 +75,7 @@ function joinTeam(teamId, callback) {
 function leaveTeam(callback) {
     let userData = {
         username: sessionStorage.getItem('username'),
-        teamId: ''
+        postId: ''
     };
     requester.update('user', sessionStorage.getItem('userId'), userData, 'kinvey')
         .then((response) => {

@@ -12,6 +12,7 @@ import Register from './components/Register/RegisterPage';
 import Logout from './components/Logout/LogoutPage';
 import Details from './components/Posts/Details';
 import Edit from './components/Edit/EditPage';
+import Delete from './components/Delete/DeletePage';
 import Create from './components/Create/CreatePage';
 
 ReactDOM.render(
@@ -20,13 +21,14 @@ ReactDOM.render(
             <IndexRoute component={HomePage}/>
             <Route path="posts">
                 <IndexRoute component={Posts}/>
-                <Route path=":teamId" component={Details}/>
+                <Route path=":postId" component={Details}/>
             </Route>
             <Route path="about" component={About}/>
             <Route path="login" component={Login}/>
             <Route path="register" component={Register}/>
             <Route path="logout" component={Logout}/>
-            <Route path="edit/:teamId" component={Edit}/>
+            <Route path="edit/:postId" component={Edit}/>
+            <Route path="delete/:postId" component={Delete}/>
             <Route path="create" component={Create}/>
         </Route>
     </Router>,

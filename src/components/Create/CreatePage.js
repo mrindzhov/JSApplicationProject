@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CreateForm from '../Edit/EditForm';
-import {create} from '../../models/team';
+import {create} from '../../models/post';
 
 export default class CreatePage extends Component {
     constructor(props) {
@@ -21,7 +21,6 @@ export default class CreatePage extends Component {
         let newState = {};
         newState[event.target.name] = event.target.value;
         this.setState(newState);
-        console.log(newState);
     }
 
     onSubmitHandler(event) {

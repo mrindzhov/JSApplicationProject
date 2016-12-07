@@ -1,0 +1,42 @@
+.post-box {
+    float: left;
+    width: 38em;
+    margin: 0.5em;
+    border: 3px solid  #f4511e !important;
+;
+    text-decoration: blink;
+    color: black;
+    word-wrap: break-word;
+
+}
+.post-box:hover {
+    border: 3px solid #f4511e !important;
+    text-decoration: none;
+    color: black;
+}
+
+.spanner {
+    background-color: #f4511e !important;
+
+    display: block;
+    padding: 0.25em;
+}
+.spanner-left{
+    display: block;
+    padding: 0.25em;
+    background-color: #f4511e !important;
+    text-align: right;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.5em;
+    display: block;
+    padding: 0.25em;
+    padding-left: 1.5em;
+    font-weight: 600;
+}
+
+.post-box p {
+    margin: 1.5em;
+}
